@@ -29,9 +29,8 @@ var maxOperations = function(nums, k) {
 
     // loop through nums
     for(let i = 0; i < nums.length - 1;) {
-        console.log("NUMS:" + nums)
         // check if nums has value of k - i
-        const index2 = nums.indexOf(k - nums[i])
+        const index2 = nums.indexOf(k - nums[i], i + 1)
 
         // check if index exists
         if(index2 >= 0) {
