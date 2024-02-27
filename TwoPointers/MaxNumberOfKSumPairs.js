@@ -49,4 +49,4 @@ var maxOperations = function(nums, k) {
 }
 
 // console.log(maxOperations(nums1, k1))
-console.log(maxOperations(nums2, k2))
+console.log(maxOperations(nums2, k2)) 
