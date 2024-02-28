@@ -1,5 +1,4 @@
-const test = {a: 1, b: 2}
+const test1 = null
+const test2 = -10
 
-for(const [key, value] of Object.entries(test)) {
-    console.log(`${key}${value}`)
-}
+console.log(test2 > test1)
