@@ -1,60 +1,53 @@
+const nums1 = [1,1,1,0,0,0,1,1,1,1,0]
+const k1 = 2
 
+const nums2 = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
+const k2 = 3
 
-var longestOnes = function(nums, k) {
-    // variable to hold the max consecutive
+function longestOnes(nums, k) {
+    // variable to hold the max length
     let max = 0
 
-    // variable to hold the count of 0s
-    let zeroCount = 0
-
-    // beginnging pointer variable
+    // leftPointer variable
     let leftPointer = 0
-    // end pointer variable
+    // rightPointer variable
     let rightPointer = 0
 
+    // zero counter variable
+    let zeroCount = 0
+
     // loop through nums
-    while(rightPointer < nums.length) {
-        // check if value of nums[leftPointer] is zero
-        if(!nums[leftPointer]) {
-            // increment leftPointer
-            leftPointer++
-            // decrement zeroCount
-            zeroCount--
-
-            // check if rightPointer is at the same index
-            if(leftPointer === rightPointer) {
-                // increment rightPointer
-                rightPointer++
-            }
-        }
-
-        // check value of nums[rightPointer]
-        if(nums[rightPointer + 1]) {
-            // if value is 1, increment rightPointer
-            rightPointer++
+    for(let i = 0; i < nums.length; i++) {
+        // check value of nums[i]
+        if(nums[i]) {
+            // value is 1, set rightPointer to i
+            rightPointer = i
         } else {
-            // if value is 0, check zeroCount
+            // value is 0, check if zeroCount is less than k
             if(zeroCount < k) {
-                // still have room for zeroes, increment rightPointer
-                rightPointer++
+                // still room for zeroes
+                // set rightPointer to i
+                rightPointer = i
                 // increment zeroCount
                 zeroCount++
             } else {
-                // max zero limit, move leftPointer to next 0 and increment
+                // no more room for zeroes
+                // set leftPointer to next 0 and increment
                 leftPointer = nums.indexOf(0, leftPointer)
                 leftPointer++
-                // increment rightPointer
-                rightPointer++
+                // set rightPointer to i
+                rightPointer = i
             }
         }
 
-        // check if length is larger than current max
-        if((rightPointer - leftPointer) > max) {
-            // set new max
-            max = rightPointer - leftPointer
+        // check if length is larger than max
+        if(rightPointer - leftPointer + 1 > max) {
+            max = rightPointer - leftPointer + 1
         }
     }
 
     // return max
     return max
-};
+}
+
+console.log(longestOnes(nums2, k2))
